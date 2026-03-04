@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "/x6CbD5WiDg=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\User\\source\\repos\\FitnessClassBookingWebApp\\FitnessClassBookingWebApp.Server\\FitnessClassBookingWebApp.Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.3\\microsoft.aspnetcore.openapi.10.0.3.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\10.0.3\\microsoft.aspnetcore.spaproxy.10.0.3.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.23.0\\microsoft.visualstudio.azure.containers.tools.targets.1.23.0.nupkg.sha512"
+  ],
+  "logs": []
+}

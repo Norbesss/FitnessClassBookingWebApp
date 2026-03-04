@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="fitnessclassbookingwebapp.client/fitnessclassbookingwebapp.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="FitnessClassBookingWebApp.Server/FitnessClassBookingWebApp.Server.csproj" />
+</Solution>

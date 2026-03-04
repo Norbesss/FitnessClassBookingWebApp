@@ -1,0 +1,6 @@
+@FitnessClassBookingWebApp.Server_HostAddress = http://localhost:5212
+
+GET {{FitnessClassBookingWebApp.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

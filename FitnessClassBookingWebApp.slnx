@@ -1,4 +1,6 @@
 <Solution>
+  <Project Path="FitnessClassBookingWeb.DataAccess/FitnessClassBookingWeb.DataAccess.csproj" Id="d4354dc5-1fd3-4262-b447-488a9f258b34" />
+  <Project Path="FitnessClassBookingWeb.Models/FitnessClassBookingWeb.Models.csproj" Id="9c71ac1b-8b71-4bad-879e-a610eaef3944" />
   <Project Path="fitnessclassbookingwebapp.client/fitnessclassbookingwebapp.client.esproj">
     <Build />
     <Deploy />

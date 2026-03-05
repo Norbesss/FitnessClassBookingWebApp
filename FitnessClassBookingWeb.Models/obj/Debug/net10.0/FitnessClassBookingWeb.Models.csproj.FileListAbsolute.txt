@@ -1,0 +1,15 @@
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\bin\Debug\net10.0\FitnessClassBookingWeb.Models.deps.json
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\bin\Debug\net10.0\FitnessClassBookingWeb.Models.runtimeconfig.json
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\bin\Debug\net10.0\FitnessClassBookingWeb.Models.dll
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\bin\Debug\net10.0\FitnessClassBookingWeb.Models.pdb
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\obj\Debug\net10.0\FitnessClassBookingWeb.Models.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\obj\Debug\net10.0\FitnessClassBookingWeb.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\obj\Debug\net10.0\FitnessClassBookingWeb.Models.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\obj\Debug\net10.0\FitnessClassBookingWeb.Models.AssemblyInfo.cs
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\obj\Debug\net10.0\FitnessClassBookingWeb.Models.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\obj\Debug\net10.0\FitnessClassBookingWeb.Models.sourcelink.json
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\obj\Debug\net10.0\FitnessClassBookingWeb.Models.dll
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\obj\Debug\net10.0\refint\FitnessClassBookingWeb.Models.dll
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\obj\Debug\net10.0\FitnessClassBookingWeb.Models.pdb
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\obj\Debug\net10.0\FitnessClassBookingWeb.Models.genruntimeconfig.cache
+C:\Users\User\source\repos\FitnessClassBookingWebApp\FitnessClassBookingWeb.Models\obj\Debug\net10.0\ref\FitnessClassBookingWeb.Models.dll

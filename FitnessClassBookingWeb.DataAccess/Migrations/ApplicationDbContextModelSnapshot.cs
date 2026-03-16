@@ -246,13 +246,13 @@ namespace FitnessClassBookingWeb.DataAccess.Migrations
                     b.HasOne("FitnessClassBookingWeb.Models.Schedule", "Schedule")
                         .WithMany("Bookings")
                         .HasForeignKey("ScheduleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FitnessClassBookingWeb.Models.User", "User")
                         .WithMany("Bookings")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Schedule");
@@ -265,7 +265,7 @@ namespace FitnessClassBookingWeb.DataAccess.Migrations
                     b.HasOne("FitnessClassBookingWeb.Models.User", "Coach")
                         .WithMany("CoachingGroups")
                         .HasForeignKey("CoachId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Coach");
@@ -276,13 +276,13 @@ namespace FitnessClassBookingWeb.DataAccess.Migrations
                     b.HasOne("FitnessClassBookingWeb.Models.Group", "Group")
                         .WithMany("Reviews")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FitnessClassBookingWeb.Models.User", "User")
                         .WithMany("Reviews")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Group");
@@ -301,7 +301,7 @@ namespace FitnessClassBookingWeb.DataAccess.Migrations
                     b.HasOne("FitnessClassBookingWeb.Models.Room", "Room")
                         .WithMany("Schedules")
                         .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Group");

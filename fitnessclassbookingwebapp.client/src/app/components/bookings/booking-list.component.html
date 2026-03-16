@@ -1,0 +1,45 @@
+<div class="bookings-container">
+  <h1>My Bookings</h1>
+
+  @if (loading) {
+    <div class="loading">Loading your bookings...</div>
+  } @else if (bookings.length > 0) {
+    <div class="bookings-list">
+      @for (booking of bookings; track booking.bookingId) {
+        <div class="booking-card" [class]="getStatusClass(booking)">
+          <div class="booking-header">
+            <h3>{{ booking.groupName }}</h3>
+            <span class="status-badge" [class]="getStatusClass(booking)">
+              {{ booking.status }}
+            </span>
+          </div>
+          
+          <div class="booking-details">
+            <div class="detail-item">
+              <strong>Date:</strong> {{ booking.startTime | date:'EEEE, MMMM d, y' }}
+            </div>
+            <div class="detail-item">
+              <strong>Time:</strong> {{ booking.startTime | date:'h:mm a' }} - {{ booking.endTime | date:'h:mm a' }}
+            </div>
+            <div class="detail-item">
+              <strong>Booked on:</strong> {{ booking.createdAt | date:'short' }}
+            </div>
+          </div>
+
+          @if (isUpcoming(booking) && booking.status === 'Confirmed') {
+            <div class="booking-actions">
+              <button class="btn btn-danger" (click)="cancelBooking(booking)">
+                Cancel Booking
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="no-bookings">
+      <p>You don't have any bookings yet.</p>
+      <button class="btn btn-primary" routerLink="/groups">Browse Classes</button>
+    </div>
+  }
+</div>

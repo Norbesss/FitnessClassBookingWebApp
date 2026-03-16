@@ -1,0 +1,51 @@
+<div class="group-list-container">
+  <div class="header">
+    <h1>Fitness Classes</h1>
+    <div class="search-box">
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (input)="filterGroups()"
+        placeholder="Search classes..."
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  @if (loading) {
+    <div class="loading">Loading classes...</div>
+  } @else if (filteredGroups.length > 0) {
+    <div class="groups-grid">
+      @for (group of filteredGroups; track group.groupId) {
+        <div class="group-card" (click)="viewDetails(group.groupId)">
+          <div class="group-header">
+            <h3>{{ group.name }}</h3>
+            <span class="badge">{{ group.maxParticipants }} max</span>
+          </div>
+          <p class="description">{{ group.description }}</p>
+
+          <!-- Rating Display -->
+          @if (group.averageRating && group.averageRating > 0) {
+            <div class="rating">
+              @for (star of getRatingStars(group.averageRating); track $index) {
+                <span class="star" [class.filled]="star === 'filled'">★</span>
+              }
+              <span class="rating-text">{{ group.averageRating.toFixed(1) }} ({{ group.totalReviews }} reviews)</span>
+            </div>
+          }
+
+          <div class="group-footer">
+            <span class="coach">
+              <strong>Coach:</strong> {{ group.coachName }}
+            </span>
+            <button class="btn btn-sm btn-primary">View Details</button>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="no-results">
+      <p>No classes found matching "{{ searchTerm }}"</p>
+    </div>
+  }
+</div>

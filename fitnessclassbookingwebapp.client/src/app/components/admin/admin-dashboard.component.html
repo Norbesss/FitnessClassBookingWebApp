@@ -1,0 +1,63 @@
+<div class="admin-dashboard">
+  <h1>Admin Dashboard</h1>
+
+  @if (loading) {
+    <div class="loading">Loading statistics...</div>
+  } @else if (statistics) {
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">{{ statistics.totalUsers }}</div>
+        <div class="stat-label">Total Users</div>
+        <div class="stat-detail">{{ statistics.activeUsers }} active</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-value">{{ statistics.totalGroups }}</div>
+        <div class="stat-label">Total Classes</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-value">{{ statistics.totalSchedules }}</div>
+        <div class="stat-label">Total Schedules</div>
+        <div class="stat-detail">{{ statistics.upcomingSchedules }} upcoming</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-value">{{ statistics.totalBookings }}</div>
+        <div class="stat-label">Total Bookings</div>
+        <div class="stat-detail">{{ statistics.confirmedBookings }} confirmed</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-value">{{ statistics.totalReviews }}</div>
+        <div class="stat-label">Total Reviews</div>
+        <div class="stat-detail">{{ statistics.averageRating.toFixed(1) }} avg rating</div>
+      </div>
+    </div>
+
+    <div class="admin-actions">
+      <h2>Management</h2>
+      <div class="action-cards">
+        <div class="action-card" routerLink="/admin/users">
+          <h3>Manage Users</h3>
+          <p>View and manage user accounts</p>
+        </div>
+
+        <div class="action-card" routerLink="/admin/groups">
+          <h3>Manage Classes</h3>
+          <p>Create and edit fitness classes</p>
+        </div>
+
+        <div class="action-card" routerLink="/admin/schedules">
+          <h3>Manage Schedules</h3>
+          <p>Schedule classes and manage rooms</p>
+        </div>
+
+        <div class="action-card" routerLink="/admin/bookings">
+          <h3>Manage Bookings</h3>
+          <p>View and manage all bookings</p>
+        </div>
+      </div>
+    </div>
+  }
+</div>

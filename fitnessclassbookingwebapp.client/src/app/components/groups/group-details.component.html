@@ -1,0 +1,82 @@
+<div class="group-details-container">
+  @if (loading) {
+    <div class="loading">Loading...</div>
+  } @else if (group) {
+    <div class="back-button">
+      <button class="btn btn-link" routerLink="/groups">← Back to Classes</button>
+    </div>
+
+    <div class="group-header">
+      <div class="group-info">
+        <h1>{{ group.name }}</h1>
+        <p class="description">{{ group.description }}</p>
+        <div class="meta-info">
+          <span><strong>Coach:</strong> {{ group.coachName }}</span>
+          <span><strong>Max Participants:</strong> {{ group.maxParticipants }}</span>
+          @if (reviews.length > 0) {
+            <span><strong>Rating:</strong> {{ getStars(getAverageRating()) }} ({{ getAverageRating().toFixed(1) }})</span>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Upcoming Schedules -->
+    <section class="schedules-section">
+      <h2>Upcoming Classes</h2>
+      @if (schedules.length > 0) {
+        <div class="schedules-list">
+          @for (schedule of schedules; track schedule.scheduleId) {
+            <div class="schedule-card">
+              <div class="schedule-info">
+                <h4>{{ schedule.startTime | date:'EEEE, MMMM d, y' }}</h4>
+                <p>{{ schedule.startTime | date:'h:mm a' }} - {{ schedule.endTime | date:'h:mm a' }}</p>
+                <p class="room">{{ schedule.roomName }}</p>
+              </div>
+              <div class="schedule-actions">
+                <div class="availability">
+                  <span class="spots">{{ (schedule.maxParticipants || 0) - (schedule.currentBookings || 0) }} spots left</span>
+                  <span class="capacity">{{ schedule.currentBookings || 0 }}/{{ schedule.maxParticipants }}</span>
+                </div>
+                @if (isAuthenticated) {
+                  <button 
+                    class="btn btn-primary" 
+                    (click)="bookClass(schedule.scheduleId)"
+                    [disabled]="(schedule.currentBookings || 0) >= (schedule.maxParticipants || 0)">
+                    {{ (schedule.currentBookings || 0) >= (schedule.maxParticipants || 0) ? 'Full' : 'Book Class' }}
+                  </button>
+                } @else {
+                  <button class="btn btn-primary" routerLink="/login">Login to Book</button>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="no-data">No upcoming classes scheduled.</p>
+      }
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews-section">
+      <h2>Reviews ({{ reviews.length }})</h2>
+      @if (reviews.length > 0) {
+        <div class="reviews-list">
+          @for (review of reviews; track review.reviewId) {
+            <div class="review-card">
+              <div class="review-header">
+                <strong>{{ review.userName }}</strong>
+                <span class="rating">{{ getStars(review.rating) }}</span>
+              </div>
+              <p class="comment">{{ review.comment }}</p>
+              <span class="date">{{ review.createdAt | date:'short' }}</span>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="no-data">No reviews yet. Be the first to review!</p>
+      }
+    </section>
+  } @else {
+    <div class="error">Group not found</div>
+  }
+</div>

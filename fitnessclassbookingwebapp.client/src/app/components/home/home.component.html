@@ -1,0 +1,216 @@
+<div class="home-container">
+
+  <!-- Loading State -->
+  @if (loading) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Loading...</p>
+    </div>
+  }
+
+  <!-- Error State -->
+  @if (error && !loading) {
+    <div class="error-container">
+      <mat-icon color="warn">error</mat-icon>
+      <p>{{ error }}</p>
+      <button mat-raised-button color="primary" (click)="loadHomePageData()">
+        <mat-icon>refresh</mat-icon>
+        Retry
+      </button>
+    </div>
+  }
+
+  <!-- Content -->
+  @if (!loading && !error) {
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to Fitness Class Booking</h1>
+        <p>Book your favorite fitness classes and achieve your health goals</p>
+        @if (!isAuthenticated) {
+          <div class="hero-actions">
+            <button mat-raised-button color="accent" routerLink="/register" class="hero-button">
+              <mat-icon>how_to_reg</mat-icon>
+              Get Started
+            </button>
+            <button mat-stroked-button routerLink="/login" class="hero-button-outlined">
+              <mat-icon>login</mat-icon>
+              Login
+            </button>
+          </div>
+        } @else {
+          <div class="hero-actions">
+            <button mat-raised-button color="accent" routerLink="/groups" class="hero-button">
+              <mat-icon>search</mat-icon>
+              Browse Classes
+            </button>
+            <button mat-stroked-button routerLink="/bookings" class="hero-button-outlined">
+              <mat-icon>event</mat-icon>
+              My Bookings
+            </button>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Statistics Section -->
+    @if (stats) {
+      <section class="stats-section">
+        <h2>Our Platform</h2>
+        <div class="stats-grid">
+          <mat-card class="stat-card">
+            <mat-card-content>
+              <mat-icon color="primary">fitness_center</mat-icon>
+              <h3>{{ stats.totalGroups }}</h3>
+              <p>Fitness Classes</p>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="stat-card">
+            <mat-card-content>
+              <mat-icon color="accent">event</mat-icon>
+              <h3>{{ stats.upcomingSchedules }}</h3>
+              <p>Upcoming Sessions</p>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="stat-card">
+            <mat-card-content>
+              <mat-icon color="primary">people</mat-icon>
+              <h3>{{ stats.totalActiveUsers }}</h3>
+              <p>Active Members</p>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="stat-card">
+            <mat-card-content>
+              <mat-icon color="accent">star</mat-icon>
+              <h3>{{ stats.averageRating.toFixed(1) }}</h3>
+              <p>Average Rating</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </section>
+    }
+
+  <!-- Featured Groups -->
+  <section class="featured-groups">
+    <h2>Featured Classes</h2>
+    @if (featuredGroups.length > 0) {
+      <div class="groups-grid">
+        @for (group of featuredGroups; track group.groupId) {
+          <mat-card class="group-card" (click)="viewGroupDetails(group.groupId)">
+            <mat-card-header>
+              <mat-card-title>{{ group.name }}</mat-card-title>
+              <mat-chip highlighted>{{ group.maxParticipants }} max</mat-chip>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ group.description }}</p>
+
+              <!-- Rating -->
+              @if (group.averageRating > 0) {
+                <div class="rating">
+                  @for (star of getRatingStars(group.averageRating); track $index) {
+                    <mat-icon [class.filled]="star === 'star'">{{ star }}</mat-icon>
+                  }
+                  <span class="rating-text">{{ group.averageRating.toFixed(1) }} ({{ group.totalReviews }} reviews)</span>
+                </div>
+              }
+            </mat-card-content>
+            <mat-card-footer>
+              <div class="group-info">
+                <span>
+                  <mat-icon>person</mat-icon>
+                  {{ group.coachName }}
+                </span>
+              </div>
+            </mat-card-footer>
+          </mat-card>
+        }
+      </div>
+      <div class="center-button">
+        <button mat-button color="primary" (click)="viewAllGroups()">
+          View All Classes
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+    } @else {
+      <mat-card class="no-data-card">
+        <mat-card-content>
+          <mat-icon>fitness_center</mat-icon>
+          <p>No classes available at the moment.</p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </section>
+
+  <!-- Upcoming Schedules -->
+  <section class="upcoming-schedules">
+    <h2>Upcoming Classes</h2>
+    @if (upcomingSchedules.length > 0) {
+      <mat-list class="schedules-list">
+        @for (schedule of upcomingSchedules; track schedule.scheduleId) {
+          <mat-list-item class="schedule-item">
+            <mat-icon matListItemIcon>event</mat-icon>
+            <div matListItemTitle class="schedule-title">{{ schedule.groupName }}</div>
+            <div matListItemLine class="schedule-subtitle">
+              <mat-icon>location_on</mat-icon>
+              {{ schedule.roomName }}
+            </div>
+            <div matListItemMeta class="schedule-meta">
+              <div class="schedule-time">
+                <mat-icon>schedule</mat-icon>
+                {{ schedule.startTime | date:'short' }}
+              </div>
+              <mat-chip [highlighted]="(schedule.currentBookings || 0) < (schedule.maxParticipants || 0)">
+                {{ schedule.currentBookings || 0 }}/{{ schedule.maxParticipants }} booked
+              </mat-chip>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        }
+      </mat-list>
+    } @else {
+      <mat-card class="no-data-card">
+        <mat-card-content>
+          <mat-icon>event_busy</mat-icon>
+          <p>No upcoming classes scheduled.</p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </section>
+
+  <!-- Recent Reviews -->
+  @if (recentReviews && recentReviews.length > 0) {
+    <section class="recent-reviews">
+      <h2>Recent Reviews</h2>
+      <div class="reviews-grid">
+        @for (review of recentReviews; track review.reviewId) {
+          <mat-card class="review-card">
+            <mat-card-header>
+              <div mat-card-avatar class="review-avatar">
+                <mat-icon>person</mat-icon>
+              </div>
+              <mat-card-title>{{ review.userName }}</mat-card-title>
+              <mat-card-subtitle>{{ review.groupName }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="review-rating">
+                @for (star of getRatingStars(review.rating); track $index) {
+                  <mat-icon [class.filled]="star === 'star'">{{ star }}</mat-icon>
+                }
+              </div>
+              <p class="review-comment">{{ review.comment }}</p>
+              <p class="review-date">
+                <mat-icon>access_time</mat-icon>
+                {{ review.createdAt | date:'medium' }}
+              </p>
+            </mat-card-content>
+          </mat-card>
+        }
+      </div>
+    </section>
+  }
+  }
+</div>
+

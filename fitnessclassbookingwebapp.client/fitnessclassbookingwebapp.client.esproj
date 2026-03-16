@@ -7,4 +7,16 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\fitnessclassbookingwebapp.client\browser\</BuildOutputFolder>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\app\core\guards\" />
+    <Folder Include="src\app\core\interceptors\" />
+    <Folder Include="src\app\core\services\" />
+    <Folder Include="src\app\features\auth\" />
+    <Folder Include="src\app\features\groups\" />
+    <Folder Include="src\app\features\bookings\" />
+    <Folder Include="src\app\features\admin\" />
+    <Folder Include="src\app\features\reviews\" />
+    <Folder Include="src\app\shared\components\" />
+    <Folder Include="src\app\shared\models\" />
+  </ItemGroup>
 </Project>

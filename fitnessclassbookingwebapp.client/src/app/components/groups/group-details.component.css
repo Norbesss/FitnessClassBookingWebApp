@@ -1,0 +1,206 @@
+.group-details-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.back-button {
+  margin-bottom: 20px;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #667eea;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+.group-header {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 40px;
+}
+
+.group-info h1 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 36px;
+}
+
+.description {
+  color: #666;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.meta-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  color: #888;
+}
+
+.meta-info strong {
+  color: #555;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.schedules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.schedule-card {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.schedule-info h4 {
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.schedule-info p {
+  color: #666;
+  margin: 5px 0;
+}
+
+.room {
+  color: #888;
+  font-size: 14px;
+}
+
+.schedule-actions {
+  text-align: right;
+}
+
+.availability {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.spots {
+  color: #667eea;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.capacity {
+  color: #888;
+  font-size: 14px;
+}
+
+.btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background-color: #667eea;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #5568d3;
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.review-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.review-header strong {
+  color: #333;
+}
+
+.rating {
+  color: #ffc107;
+  font-size: 18px;
+}
+
+.comment {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.date {
+  color: #999;
+  font-size: 13px;
+}
+
+.loading, .error, .no-data {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.error {
+  color: #dc3545;
+}
+
+@media (max-width: 768px) {
+  .schedule-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .schedule-actions {
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

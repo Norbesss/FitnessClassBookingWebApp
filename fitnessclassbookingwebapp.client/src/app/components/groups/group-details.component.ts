@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GroupService } from '../../services/group.service';
 import { ScheduleService } from '../../services/schedule.service';
@@ -19,9 +19,11 @@ export class GroupDetailsComponent implements OnInit {
   group: Group | null = null;
   schedules: Schedule[] = [];
   reviews: Review[] = [];
-  loading = true;
   isAuthenticated = false;
   currentUserId: number | null = null;
+  groupId!: number;
+  userReview: Review | null = null;
+  isLoaded = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,7 +32,8 @@ export class GroupDetailsComponent implements OnInit {
     private scheduleService: ScheduleService,
     private reviewService: ReviewService,
     private bookingService: BookingService,
-    private authService: AuthService
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -43,38 +46,65 @@ export class GroupDetailsComponent implements OnInit {
     if (id) {
       this.loadGroupDetails(id);
     }
+
+    this.groupId = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.loadGroupDetails(this.groupId);
+    this.loadUserReview();
   }
 
   loadGroupDetails(id: number): void {
+    this.isLoaded = false;
     this.groupService.getGroupById(id).subscribe({
       next: (group) => {
         this.group = group;
-        this.loadSchedules(id);
-        this.loadReviews(id);
+        this.loadSchedules(id).subscribe({
+          next: (schedules) => {
+            this.schedules = schedules.filter(s => new Date(s.startTime) > new Date());
+            this.loadReviews(id).subscribe({
+              next: (reviews) => {
+                this.reviews = reviews;
+                this.isLoaded = true;
+                this.cdr.detectChanges();
+              },
+              error: (error) => {
+                console.error('Error loading reviews:', error);
+                this.isLoaded = true;
+                this.cdr.detectChanges();
+              }
+            });
+          },
+          error: (error) => {
+            console.error('Error loading schedules:', error);
+            this.isLoaded = true;
+            this.cdr.detectChanges();
+          }
+        });
       },
       error: (error) => {
         console.error('Error loading group:', error);
-        this.loading = false;
+        this.isLoaded = true;
+        this.cdr.detectChanges();
       }
     });
   }
 
-  loadSchedules(groupId: number): void {
-    this.scheduleService.getSchedulesByGroup(groupId).subscribe({
-      next: (schedules) => {
-        this.schedules = schedules.filter(s => new Date(s.startTime) > new Date());
-        this.loading = false;
-      },
-      error: (error) => console.error('Error loading schedules:', error)
-    });
+  loadSchedules(groupId: number) {
+    return this.scheduleService.getSchedulesByGroup(groupId);
   }
 
-  loadReviews(groupId: number): void {
-    this.reviewService.getReviewsByGroup(groupId).subscribe({
-      next: (reviews) => {
-        this.reviews = reviews;
+  loadReviews(groupId: number) {
+    return this.reviewService.getReviewsByGroup(groupId);
+  }
+
+  loadUserReview(): void {
+    this.reviewService.getMyReviewForGroup(this.groupId).subscribe({
+      next: (review) => {
+        this.userReview = review;
       },
-      error: (error) => console.error('Error loading reviews:', error)
+      error: () => {
+        this.userReview = null;
+      }
     });
   }
 
@@ -94,6 +124,7 @@ export class GroupDetailsComponent implements OnInit {
       },
       error: (error) => {
         alert(error.error?.message || 'Failed to book class');
+        this.cdr.detectChanges();
       }
     });
   }

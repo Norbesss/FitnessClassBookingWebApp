@@ -1,4 +1,3 @@
-/* Global base + theme tokens */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 :root {
@@ -63,7 +62,6 @@ a {
   color: inherit;
 }
 
-/* App shell layout */
 app-root,
 body .app-root-shell {
   min-height: 100vh;
@@ -84,7 +82,6 @@ body .app-root-shell {
   -webkit-backdrop-filter: blur(24px);
 }
 
-/* Material surfaces + controls */
 .mat-mdc-card {
   background: var(--fc-surface-elevated) !important;
   border-radius: var(--fc-radius-md) !important;
@@ -112,7 +109,6 @@ body .app-root-shell {
   width: 100%;
 }
 
-/* Utilities */
 .full-width {
   width: 100%;
 }
@@ -159,4 +155,3 @@ body .app-root-shell {
 .p-4 {
   padding: 32px;
 }
-

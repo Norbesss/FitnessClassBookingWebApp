@@ -25,4 +25,4 @@ describe('App', () => {
   it('should have title property', () => {
     expect(component.title).toBe('Fitness Class Booking');
   });
-};
+});

@@ -12,9 +12,7 @@
     </div>
   </div>
 
-  @if (loading) {
-    <div class="loading">Loading classes...</div>
-  } @else if (filteredGroups.length > 0) {
+  @if (isLoaded && filteredGroups.length > 0) {
     <div class="groups-grid">
       @for (group of filteredGroups; track group.groupId) {
         <div class="group-card" (click)="viewDetails(group.groupId)">
@@ -24,7 +22,6 @@
           </div>
           <p class="description">{{ group.description }}</p>
 
-          <!-- Rating Display -->
           @if (group.averageRating && group.averageRating > 0) {
             <div class="rating">
               @for (star of getRatingStars(group.averageRating); track $index) {
@@ -43,7 +40,7 @@
         </div>
       }
     </div>
-  } @else {
+  } @else if (isLoaded) {
     <div class="no-results">
       <p>No classes found matching "{{ searchTerm }}"</p>
     </div>

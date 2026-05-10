@@ -12,7 +12,6 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
-  // User Management
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.API_URL}/users`);
   }
@@ -28,7 +27,6 @@ export class AdminService {
     );
   }
 
-  // Role Management
   getAllRoles(): Observable<Role[]> {
     return this.http.get<Role[]>(`${this.API_URL}/roles`);
   }
@@ -44,7 +42,6 @@ export class AdminService {
     return this.http.delete<void>(`${this.API_URL}/users/${userId}/roles/${roleId}`);
   }
 
-  // Room Management
   getAllRooms(): Observable<Room[]> {
     return this.http.get<Room[]>(`${this.API_URL}/rooms`);
   }
@@ -65,7 +62,6 @@ export class AdminService {
     return this.http.delete<void>(`${this.API_URL}/rooms/${id}`);
   }
 
-  // Statistics
   getStatistics(): Observable<Statistics> {
     return this.http.get<Statistics>(`${this.API_URL}/statistics`);
   }

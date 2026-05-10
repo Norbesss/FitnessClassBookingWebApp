@@ -1,0 +1,64 @@
+<div class="admin-section">
+  <h1>Bookings</h1>
+
+  @if (errorMessage) {
+  <div class="error-message">
+    {{ errorMessage }}
+  </div>
+  }
+
+  @if (loading) {
+  <div class="loading">Loading bookings...</div>
+  } @else if (bookings.length > 0) {
+  <div class="booking-list">
+    @for (booking of bookings; track booking.bookingId) {
+    <div class="booking-card">
+      <div class="booking-info">
+        <div class="booking-name">{{ booking.groupName }}</div>
+
+        <div class="booking-meta">
+          User: {{ booking.userName }}
+        </div>
+
+        <div class="booking-meta">
+          Start: {{ booking.startTime | date:'short' }}
+        </div>
+
+        <div class="booking-meta">
+          End: {{ booking.endTime | date:'short' }}
+        </div>
+
+        <div class="booking-meta">
+          Created: {{ booking.createdAt | date:'short' }}
+        </div>
+      </div>
+
+      <div class="booking-right">
+        <div class="booking-status"
+             [class.confirmed]="booking.status === 'Confirmed'"
+             [class.cancelled]="booking.status === 'Cancelled'"
+             [class.pending]="booking.status === 'Pending'">
+          {{ booking.status }}
+        </div>
+
+        <div class="booking-actions">
+          <button class="btn confirm"
+                  (click)="confirmBooking(booking.bookingId)"
+                  [disabled]="booking.status === 'Confirmed'">
+            Confirm
+          </button>
+
+          <button class="btn cancel"
+                  (click)="cancelBooking(booking.bookingId)"
+                  [disabled]="booking.status === 'Cancelled'">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  } @else {
+  <div class="empty-state">No bookings found.</div>
+  }
+</div>

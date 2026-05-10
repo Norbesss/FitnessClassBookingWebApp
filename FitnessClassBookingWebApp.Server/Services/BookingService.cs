@@ -24,9 +24,9 @@ public class BookingService : IBookingService
             {
                 BookingId = b.BookingId,
                 UserId = b.UserId,
-                UserName = $"{b.User.FirstName} {b.User.LastName}",
+                UserName = b.User != null ? $"{b.User.FirstName} {b.User.LastName}" : null,
                 ScheduleId = b.ScheduleId,
-                GroupName = b.Schedule.Group.Name,
+                GroupName = b.Schedule != null ? b.Schedule.Group.Name : null,
                 StartTime = b.Schedule.StartTime,
                 EndTime = b.Schedule.EndTime,
                 Status = b.Status,
@@ -71,9 +71,9 @@ public class BookingService : IBookingService
             {
                 BookingId = b.BookingId,
                 UserId = b.UserId,
-                UserName = $"{b.User.FirstName} {b.User.LastName}",
+                UserName = b.User != null ? $"{b.User.FirstName} {b.User.LastName}" : null,
                 ScheduleId = b.ScheduleId,
-                GroupName = b.Schedule.Group.Name,
+                GroupName = b.Schedule != null ? b.Schedule.Group.Name : null,
                 StartTime = b.Schedule.StartTime,
                 EndTime = b.Schedule.EndTime,
                 Status = b.Status,
@@ -93,9 +93,9 @@ public class BookingService : IBookingService
             {
                 BookingId = b.BookingId,
                 UserId = b.UserId,
-                UserName = $"{b.User.FirstName} {b.User.LastName}",
+                UserName = b.User != null ? $"{b.User.FirstName} {b.User.LastName}" : null,
                 ScheduleId = b.ScheduleId,
-                GroupName = b.Schedule.Group.Name,
+                GroupName = b.Schedule != null ? b.Schedule.Group.Name : null,
                 StartTime = b.Schedule.StartTime,
                 EndTime = b.Schedule.EndTime,
                 Status = b.Status,
@@ -128,7 +128,7 @@ public class BookingService : IBookingService
         {
             UserId = userId,
             ScheduleId = scheduleId,
-            Status = "Confirmed",
+            Status = "Pending",
             CreatedAt = DateTime.UtcNow
         };
 

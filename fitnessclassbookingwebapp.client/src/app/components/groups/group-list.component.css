@@ -10,7 +10,7 @@
 
 .header h1 {
   font-size: 36px;
-  color: #333;
+  color: var(--fc-text-main);
   margin-bottom: 20px;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .description {
-  color: #666;
+  color: var(--fc-text-muted);
   line-height: 1.6;
   margin-bottom: 15px;
 }
@@ -104,7 +104,7 @@
 .rating-text {
   margin-left: 8px;
   font-size: 14px;
-  color: #666;
+  color: var(--fc-text-muted);
 }
 
 .group-footer {
@@ -116,7 +116,7 @@
 }
 
 .coach {
-  color: #888;
+  color: var(--fc-text-muted);
   font-size: 14px;
 }
 
@@ -143,10 +143,10 @@
   font-size: 13px;
 }
 
-.loading, .no-results {
+.no-results {
   text-align: center;
   padding: 60px 20px;
-  color: #666;
+  color: var(--fc-text-muted);
 }
 
 .no-results p {

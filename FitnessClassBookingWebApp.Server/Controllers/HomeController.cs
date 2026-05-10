@@ -14,10 +14,6 @@ namespace FitnessClassBookingWebApp.Server.Controllers
             _homeService = homeService;
         }
 
-        /// <summary>
-        /// Get all data for the home page
-        /// </summary>
-        /// <returns>Home page data including stats, featured groups, upcoming schedules, and recent reviews</returns>
         [HttpGet]
         public async Task<IActionResult> GetHomePageData()
         {
@@ -32,10 +28,6 @@ namespace FitnessClassBookingWebApp.Server.Controllers
             }
         }
 
-        /// <summary>
-        /// Get dashboard statistics
-        /// </summary>
-        /// <returns>Dashboard statistics</returns>
         [HttpGet("stats")]
         public async Task<IActionResult> GetDashboardStats()
         {
@@ -50,11 +42,6 @@ namespace FitnessClassBookingWebApp.Server.Controllers
             }
         }
 
-        /// <summary>
-        /// Get featured groups (highest rated)
-        /// </summary>
-        /// <param name="count">Number of groups to return (default: 3)</param>
-        /// <returns>List of featured groups</returns>
         [HttpGet("featured-groups")]
         public async Task<IActionResult> GetFeaturedGroups([FromQuery] int count = 3)
         {
@@ -74,11 +61,6 @@ namespace FitnessClassBookingWebApp.Server.Controllers
             }
         }
 
-        /// <summary>
-        /// Get upcoming schedules
-        /// </summary>
-        /// <param name="count">Number of schedules to return (default: 5)</param>
-        /// <returns>List of upcoming schedules</returns>
         [HttpGet("upcoming-schedules")]
         public async Task<IActionResult> GetUpcomingSchedules([FromQuery] int count = 5)
         {
@@ -98,11 +80,6 @@ namespace FitnessClassBookingWebApp.Server.Controllers
             }
         }
 
-        /// <summary>
-        /// Get recent reviews
-        /// </summary>
-        /// <param name="count">Number of reviews to return (default: 5)</param>
-        /// <returns>List of recent reviews</returns>
         [HttpGet("recent-reviews")]
         public async Task<IActionResult> GetRecentReviews([FromQuery] int count = 5)
         {

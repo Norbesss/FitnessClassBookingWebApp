@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BookingService } from '../../services/booking.service';
 import { AuthService } from '../../services/auth.service';
 import { Booking } from '../../models/booking.model';
@@ -16,7 +16,8 @@ export class BookingListComponent implements OnInit {
 
   constructor(
     private bookingService: BookingService,
-    private authService: AuthService
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -35,10 +36,12 @@ export class BookingListComponent implements OnInit {
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
           );
           this.loading = false;
+          this.cdr.detectChanges();
         },
         error: (error) => {
           console.error('Error loading bookings:', error);
           this.loading = false;
+          this.cdr.detectChanges();
         }
       });
     }
@@ -52,10 +55,12 @@ export class BookingListComponent implements OnInit {
         next: () => {
           alert('Booking cancelled successfully');
           this.loadBookings();
+          this.cdr.detectChanges();
         },
         error: (error) => {
           alert('Failed to cancel booking');
           console.error(error);
+          this.cdr.detectChanges();
         }
       });
     }

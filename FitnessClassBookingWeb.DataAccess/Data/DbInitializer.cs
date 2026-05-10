@@ -7,7 +7,7 @@ public static class DbInitializer
 {
     public static void Initialize(ApplicationDbContext context)
     {
-        context.Database.EnsureCreated();
+        context.Database.Migrate();
 
         if (context.Users.Any())
         {
@@ -31,7 +31,7 @@ public static class DbInitializer
                 FirstName = "John",
                 LastName = "Admin",
                 Email = "admin@fitness.com",
-                PasswordHash = "hashed_password_123",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin123!"),
                 PhoneNumber = "+1234567890",
                 IsActive = true,
                 CreatedAt = DateTime.UtcNow
@@ -41,7 +41,7 @@ public static class DbInitializer
                 FirstName = "Sarah",
                 LastName = "Johnson",
                 Email = "sarah.johnson@fitness.com",
-                PasswordHash = "hashed_password_456",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Coach123!"),
                 PhoneNumber = "+1234567891",
                 IsActive = true,
                 CreatedAt = DateTime.UtcNow
@@ -51,7 +51,7 @@ public static class DbInitializer
                 FirstName = "Mike",
                 LastName = "Thompson",
                 Email = "mike.thompson@fitness.com",
-                PasswordHash = "hashed_password_789",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("Coach123!"),
                 PhoneNumber = "+1234567892",
                 IsActive = true,
                 CreatedAt = DateTime.UtcNow
@@ -61,7 +61,7 @@ public static class DbInitializer
                 FirstName = "Emily",
                 LastName = "Davis",
                 Email = "emily.davis@email.com",
-                PasswordHash = "hashed_password_101",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("User123!"),
                 PhoneNumber = "+1234567893",
                 IsActive = true,
                 CreatedAt = DateTime.UtcNow
@@ -71,7 +71,7 @@ public static class DbInitializer
                 FirstName = "Chris",
                 LastName = "Wilson",
                 Email = "chris.wilson@email.com",
-                PasswordHash = "hashed_password_102",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("User123!"),
                 PhoneNumber = "+1234567894",
                 IsActive = true,
                 CreatedAt = DateTime.UtcNow
@@ -81,7 +81,7 @@ public static class DbInitializer
                 FirstName = "Lisa",
                 LastName = "Martinez",
                 Email = "lisa.martinez@email.com",
-                PasswordHash = "hashed_password_103",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("User123!"),
                 PhoneNumber = "+1234567895",
                 IsActive = true,
                 CreatedAt = DateTime.UtcNow

@@ -1,0 +1,23 @@
+<div class="admin-section">
+  <h1>Classes</h1>
+
+  @if (loading) {
+    <div class="loading">Loading classes...</div>
+  } @else if (groups.length > 0) {
+    <div class="group-list">
+      @for (group of groups; track group.groupId) {
+        <div class="group-card">
+          <div>
+            <div class="group-name">{{ group.name }}</div>
+            <div class="group-coach">Coach: {{ group.coachName }}</div>
+          </div>
+          <div class="group-meta">
+            <span>{{ group.maxParticipants }} max</span>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="empty-state">No classes found.</div>
+  }
+</div>

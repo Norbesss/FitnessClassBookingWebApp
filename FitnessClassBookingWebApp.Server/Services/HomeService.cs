@@ -51,10 +51,8 @@ namespace FitnessClassBookingWebApp.Server.Services
 
         public async Task<IEnumerable<GroupDto>> GetFeaturedGroupsAsync(int count = 3)
         {
-            // Get groups with their coaches
             var groups = await _unitOfWork.Groups.GetAllAsync(g => g.Coach);
             
-            // Get reviews for each group to calculate average rating
             var allReviews = await _unitOfWork.Reviews.GetAllAsync();
             
             var groupDtos = groups.Select(g =>
@@ -84,14 +82,12 @@ namespace FitnessClassBookingWebApp.Server.Services
 
         public async Task<IEnumerable<ScheduleDto>> GetUpcomingSchedulesAsync(int count = 5)
         {
-            // Get schedules with related entities
             var schedules = await _unitOfWork.Schedules.FindAsync(
                 s => s.StartTime > DateTime.UtcNow,
                 s => s.Group,
                 s => s.Room
             );
 
-            // Get bookings count for each schedule
             var allBookings = await _unitOfWork.Bookings.GetAllAsync();
 
             var scheduleDtos = schedules
@@ -124,7 +120,6 @@ namespace FitnessClassBookingWebApp.Server.Services
 
         public async Task<IEnumerable<ReviewDto>> GetRecentReviewsAsync(int count = 5)
         {
-            // Get all reviews with related entities
             var reviews = await _unitOfWork.Reviews.GetAllAsync(
                 r => r.User,
                 r => r.Group

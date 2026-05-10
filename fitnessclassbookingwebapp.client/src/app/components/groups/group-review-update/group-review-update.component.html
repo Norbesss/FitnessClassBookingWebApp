@@ -1,0 +1,51 @@
+<div class="review-page">
+  <button class="back-btn" (click)="goBack()">Back to class</button>
+
+  <h1>Update Review</h1>
+
+  @if (errorMessage) {
+  <div class="message error">
+    {{ errorMessage }}
+  </div>
+  }
+
+  @if (successMessage) {
+  <div class="message success">
+    {{ successMessage }}
+  </div>
+  }
+
+  @if (loading) {
+  <div class="empty-state">Loading review...</div>
+  } @else if (review) {
+  <section class="review-form-card">
+    <form (ngSubmit)="updateReview()">
+      <div class="form-group">
+        <label for="rating">Rating</label>
+
+        <select id="rating" name="rating" [(ngModel)]="rating">
+          <option [value]="5">5 - Excellent</option>
+          <option [value]="4">4 - Good</option>
+          <option [value]="3">3 - Average</option>
+          <option [value]="2">2 - Poor</option>
+          <option [value]="1">1 - Very poor</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="comment">Comment</label>
+
+        <textarea id="comment"
+                  name="comment"
+                  rows="5"
+                  [(ngModel)]="comment">
+          </textarea>
+      </div>
+
+      <button class="submit-btn" type="submit" [disabled]="saving">
+        {{ saving ? 'Saving...' : 'Update Review' }}
+      </button>
+    </form>
+  </section>
+  }
+</div>

@@ -1,15 +1,5 @@
 <div class="home-container">
-
-  <!-- Loading State -->
-  @if (loading) {
-    <div class="loading-container">
-      <mat-spinner></mat-spinner>
-      <p>Loading...</p>
-    </div>
-  }
-
-  <!-- Error State -->
-  @if (error && !loading) {
+  @if (isLoaded && error) {
     <div class="error-container">
       <mat-icon color="warn">error</mat-icon>
       <p>{{ error }}</p>
@@ -20,9 +10,7 @@
     </div>
   }
 
-  <!-- Content -->
-  @if (!loading && !error) {
-    <!-- Hero Section -->
+  @if (isLoaded && !error) {
     <section class="hero">
       <div class="hero-content">
         <h1>Welcome to Fitness Class Booking</h1>
@@ -53,7 +41,6 @@
       </div>
     </section>
 
-    <!-- Statistics Section -->
     @if (stats) {
       <section class="stats-section">
         <h2>Our Platform</h2>
@@ -93,7 +80,6 @@
       </section>
     }
 
-  <!-- Featured Groups -->
   <section class="featured-groups">
     <h2>Featured Classes</h2>
     @if (featuredGroups.length > 0) {
@@ -107,7 +93,6 @@
             <mat-card-content>
               <p>{{ group.description }}</p>
 
-              <!-- Rating -->
               @if (group.averageRating > 0) {
                 <div class="rating">
                   @for (star of getRatingStars(group.averageRating); track $index) {
@@ -144,7 +129,6 @@
     }
   </section>
 
-  <!-- Upcoming Schedules -->
   <section class="upcoming-schedules">
     <h2>Upcoming Classes</h2>
     @if (upcomingSchedules.length > 0) {
@@ -180,7 +164,6 @@
     }
   </section>
 
-  <!-- Recent Reviews -->
   @if (recentReviews && recentReviews.length > 0) {
     <section class="recent-reviews">
       <h2>Recent Reviews</h2>

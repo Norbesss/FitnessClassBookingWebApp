@@ -1,0 +1,25 @@
+<div class="admin-section">
+  <h1>Schedules</h1>
+
+  @if (loading) {
+    <div class="loading">Loading schedules...</div>
+  } @else if (schedules.length > 0) {
+    <div class="schedule-list">
+      @for (schedule of schedules; track schedule.scheduleId) {
+        <div class="schedule-card">
+          <div>
+            <div class="schedule-name">{{ schedule.groupName }}</div>
+            <div class="schedule-meta">
+              {{ schedule.startTime | date:'short' }} · {{ schedule.roomName }}
+            </div>
+          </div>
+          <div class="schedule-capacity">
+            {{ schedule.currentBookings || 0 }}/{{ schedule.maxParticipants }}
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="empty-state">No schedules found.</div>
+  }
+</div>

@@ -1,9 +1,7 @@
 <div class="admin-dashboard">
   <h1>Admin Dashboard</h1>
 
-  @if (loading) {
-    <div class="loading">Loading statistics...</div>
-  } @else if (statistics) {
+  @if (isLoaded && statistics) {
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-value">{{ statistics.totalUsers }}</div>
@@ -40,7 +38,7 @@
       <div class="action-cards">
         <div class="action-card" routerLink="/admin/users">
           <h3>Manage Users</h3>
-          <p>View and manage user accounts</p>
+          <p>Create and edit user accounts</p>
         </div>
 
         <div class="action-card" routerLink="/admin/groups">

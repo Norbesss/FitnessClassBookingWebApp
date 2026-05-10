@@ -1,0 +1,45 @@
+.admin-section {
+  max-width: 900px;
+}
+
+.admin-section h1 {
+  margin-bottom: 20px;
+  color: var(--fc-text-main);
+}
+
+.group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.group-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.group-name {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.group-coach {
+  color: var(--fc-text-muted);
+}
+
+.group-meta {
+  font-size: 13px;
+  font-weight: 600;
+  color: #667eea;
+}
+
+.loading,
+.empty-state {
+  padding: 40px 0;
+  color: var(--fc-text-muted);
+}

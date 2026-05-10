@@ -35,6 +35,24 @@ export class ReviewService {
     return this.http.put<Review>(`${this.API_URL}/${id}`, reviewDto);
   }
 
+  getMyReviewForGroup(groupId: number): Observable<Review> {
+    return this.http.get<Review>(`${this.API_URL}/group/${groupId}/me`);
+  }
+
+  updateMyReviewForGroup(
+    groupId: number,
+    request: { rating: number; comment: string }
+  ): Observable<Review> {
+    return this.http.put<Review>(`${this.API_URL}/group/${groupId}/me`, request);
+  }
+
+  createReviewForGroup(
+    groupId: number,
+    request: { rating: number; comment: string }
+  ): Observable<Review> {
+    return this.http.post<Review>(`${this.API_URL}/group/${groupId}`, request);
+  }
+
   deleteReview(id: number): Observable<void> {
     return this.http.delete<void>(`${this.API_URL}/${id}`);
   }

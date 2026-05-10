@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
@@ -18,7 +18,8 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -53,6 +54,7 @@ export class RegisterComponent {
         },
         error: (error) => {
           this.errorMessage = error.error?.message || 'Registration failed. Please try again.';
+          this.cdr.detectChanges();
         }
       });
     }

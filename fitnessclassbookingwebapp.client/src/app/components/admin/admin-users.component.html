@@ -1,0 +1,23 @@
+<div class="admin-section">
+  <h1>Users</h1>
+
+  @if (loading) {
+    <div class="loading">Loading users...</div>
+  } @else if (users.length > 0) {
+    <div class="user-list">
+      @for (user of users; track user.userId) {
+        <div class="user-card">
+          <div class="user-info">
+            <div class="user-name">{{ user.firstName }} {{ user.lastName }}</div>
+            <div class="user-email">{{ user.email }}</div>
+          </div>
+          <div class="user-status" [class.inactive]="!user.isActive">
+            {{ user.isActive ? 'Active' : 'Inactive' }}
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="empty-state">No users found.</div>
+  }
+</div>

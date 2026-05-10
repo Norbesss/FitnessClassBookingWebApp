@@ -21,7 +21,7 @@ public class GroupDto
     [Range(1, 100)]
     public int MaxParticipants { get; set; }
 
-    // Additional properties for display
     public double AverageRating { get; set; }
+
     public int TotalReviews { get; set; }
 }

@@ -1,18 +1,16 @@
 .admin-dashboard {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
 }
 
-h1 {
+.admin-dashboard h1 {
   font-size: 36px;
-  color: #333;
+  color: var(--fc-text-main);
   margin-bottom: 30px;
 }
 
-h2 {
+.admin-dashboard h2 {
   font-size: 28px;
-  color: #333;
+  color: var(--fc-text-main);
   margin-bottom: 20px;
 }
 
@@ -80,14 +78,8 @@ h2 {
 }
 
 .action-card p {
-  color: #666;
+  color: var(--fc-text-muted);
   margin: 0;
-}
-
-.loading {
-  text-align: center;
-  padding: 60px 20px;
-  color: #666;
 }
 
 @media (max-width: 768px) {

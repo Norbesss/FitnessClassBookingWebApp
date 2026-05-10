@@ -1,0 +1,58 @@
+.admin-section {
+  max-width: 900px;
+}
+
+.admin-section h1 {
+  margin-bottom: 20px;
+  color: var(--fc-text-main);
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.user-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.user-name {
+  font-weight: 600;
+}
+
+.user-email {
+  color: var(--fc-text-muted);
+}
+
+.user-status {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.user-status.inactive {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.loading,
+.empty-state {
+  padding: 40px 0;
+  color: var(--fc-text-muted);
+}

@@ -1,0 +1,163 @@
+.admin-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.admin-section h1 {
+  margin-bottom: 24px;
+  color: var(--fc-text-main);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.loading,
+.empty-state {
+  padding: 40px 0;
+  text-align: center;
+  color: var(--fc-text-muted);
+  font-size: 16px;
+}
+
+.error-message {
+  margin-bottom: 20px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: #ffebee;
+  color: #c62828;
+  font-weight: 600;
+}
+
+.booking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.booking-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 24px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.booking-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+.booking-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.booking-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--fc-text-main);
+}
+
+.booking-meta {
+  font-size: 14px;
+  color: var(--fc-text-muted);
+}
+
+.booking-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.booking-status {
+  display: inline-block;
+  min-width: 90px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  text-align: center;
+  background: #e3f2fd;
+  color: #1976d2;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.booking-status.confirmed {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.booking-status.cancelled {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.booking-status.pending {
+  background: #fff8e1;
+  color: #f9a825;
+}
+
+.booking-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn.confirm {
+  background: #2e7d32;
+  color: #ffffff;
+}
+
+.btn.cancel {
+  background: #c62828;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .admin-section {
+    padding: 16px;
+  }
+
+  .booking-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .booking-right {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .booking-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    flex: 1;
+  }
+}

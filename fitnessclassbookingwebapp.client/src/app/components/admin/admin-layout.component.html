@@ -1,0 +1,35 @@
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar-header">
+      <mat-icon>admin_panel_settings</mat-icon>
+      <span>Admin</span>
+    </div>
+
+    <nav class="admin-nav">
+      <a mat-button routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon>dashboard</mat-icon>
+        Dashboard
+      </a>
+      <a mat-button routerLink="/admin/users" routerLinkActive="active">
+        <mat-icon>people</mat-icon>
+        Users
+      </a>
+      <a mat-button routerLink="/admin/groups" routerLinkActive="active">
+        <mat-icon>fitness_center</mat-icon>
+        Classes
+      </a>
+      <a mat-button routerLink="/admin/schedules" routerLinkActive="active">
+        <mat-icon>schedule</mat-icon>
+        Schedules
+      </a>
+      <a mat-button routerLink="/admin/bookings" routerLinkActive="active">
+        <mat-icon>event_note</mat-icon>
+        Bookings
+      </a>
+    </nav>
+  </aside>
+
+  <section class="admin-content">
+    <router-outlet></router-outlet>
+  </section>
+</div>

@@ -8,15 +8,14 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\fitnessclassbookingwebapp.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\app\core\guards\" />
-    <Folder Include="src\app\core\interceptors\" />
-    <Folder Include="src\app\core\services\" />
-    <Folder Include="src\app\features\auth\" />
-    <Folder Include="src\app\features\groups\" />
-    <Folder Include="src\app\features\bookings\" />
-    <Folder Include="src\app\features\admin\" />
-    <Folder Include="src\app\features\reviews\" />
-    <Folder Include="src\app\shared\components\" />
-    <Folder Include="src\app\shared\models\" />
+    <None Remove="src\app\core\**" />
+    <None Remove="src\app\features\**" />
+    <None Remove="src\app\shared\**" />
+    <TypeScriptConfiguration Remove="src\app\core\**" />
+    <TypeScriptConfiguration Remove="src\app\features\**" />
+    <TypeScriptConfiguration Remove="src\app\shared\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="docs\" />
   </ItemGroup>
 </Project>

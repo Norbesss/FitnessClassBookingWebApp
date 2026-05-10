@@ -12,6 +12,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Configurations\**" />
+    <Compile Remove="Helpers\**" />
+    <Compile Remove="Middleware\**" />
+    <Content Remove="Configurations\**" />
+    <Content Remove="Helpers\**" />
+    <Content Remove="Middleware\**" />
+    <EmbeddedResource Remove="Configurations\**" />
+    <EmbeddedResource Remove="Helpers\**" />
+    <EmbeddedResource Remove="Middleware\**" />
+    <None Remove="Configurations\**" />
+    <None Remove="Helpers\**" />
+    <None Remove="Middleware\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.3" />
@@ -32,12 +47,6 @@
     <ProjectReference Include="..\fitnessclassbookingwebapp.client\fitnessclassbookingwebapp.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Middleware\" />
-    <Folder Include="Helpers\" />
-    <Folder Include="Configurations\" />
   </ItemGroup>
 
 </Project>

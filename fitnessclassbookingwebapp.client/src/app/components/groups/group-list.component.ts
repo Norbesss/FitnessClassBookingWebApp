@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GroupService } from '../../services/group.service';
 import { Group } from '../../models/group.model';
@@ -13,11 +13,12 @@ export class GroupListComponent implements OnInit {
   groups: Group[] = [];
   filteredGroups: Group[] = [];
   searchTerm = '';
-  loading = true;
+  isLoaded = false;
 
   constructor(
     private groupService: GroupService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -25,15 +26,18 @@ export class GroupListComponent implements OnInit {
   }
 
   loadGroups(): void {
+    this.isLoaded = false;
     this.groupService.getAllGroups().subscribe({
       next: (groups) => {
         this.groups = groups;
         this.filteredGroups = groups;
-        this.loading = false;
+        this.isLoaded = true;
+        this.cdr.detectChanges();
       },
       error: (error) => {
         console.error('Error loading groups:', error);
-        this.loading = false;
+        this.isLoaded = true;
+        this.cdr.detectChanges();
       }
     });
   }
@@ -43,11 +47,11 @@ export class GroupListComponent implements OnInit {
       this.filteredGroups = this.groups;
     } else {
       const term = this.searchTerm.toLowerCase();
-      this.filteredGroups = this.groups.filter(group =>
-        group.name.toLowerCase().includes(term) ||
-        group.description.toLowerCase().includes(term) ||
+        this.filteredGroups = this.groups.filter(group =>
+          group.name.toLowerCase().includes(term) ||
+          group.description.toLowerCase().includes(term) ||
         group.coachName?.toLowerCase().includes(term)
-      );
+        );
     }
   }
 

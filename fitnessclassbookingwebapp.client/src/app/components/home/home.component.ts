@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { HomeService, HomePageData, DashboardStats } from '../../services/home.service';
-import { Group } from '../../models/group.model';
-import { Schedule } from '../../models/schedule.model';
 
 @Component({
   selector: 'app-home',
@@ -18,13 +16,14 @@ export class HomeComponent implements OnInit {
   upcomingSchedules: any[] = [];
   recentReviews: any[] = [];
   stats: DashboardStats | null = null;
-  loading = true;
   error: string | null = null;
+  isLoaded = false;
 
   constructor(
     public authService: AuthService,
     private homeService: HomeService,
-    public router: Router
+    public router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -37,8 +36,8 @@ export class HomeComponent implements OnInit {
   }
 
   loadHomePageData(): void {
-    this.loading = true;
     this.error = null;
+    this.isLoaded = false;
 
     this.homeService.getHomePageData().subscribe({
       next: (data: HomePageData) => {
@@ -46,12 +45,14 @@ export class HomeComponent implements OnInit {
         this.featuredGroups = data.featuredGroups;
         this.upcomingSchedules = data.upcomingSchedules;
         this.recentReviews = data.recentReviews;
-        this.loading = false;
+        this.isLoaded = true;
+        this.cdr.detectChanges();
       },
       error: (error) => {
         console.error('Error loading home page data:', error);
         this.error = 'Failed to load home page data. Please try again later.';
-        this.loading = false;
+        this.isLoaded = true;
+        this.cdr.detectChanges();
       }
     });
   }

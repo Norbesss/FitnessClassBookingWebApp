@@ -32,7 +32,6 @@ public class AuthService : IAuthService
             return null;
         }
 
-        // Load roles separately
         var userRoles = await _unitOfWork.UserRoles.FindAsync(ur => ur.UserId == user.UserId);
         var roleIds = userRoles.Select(ur => ur.RoleId).ToList();
 
@@ -80,7 +79,7 @@ public class AuthService : IAuthService
         await _unitOfWork.Users.AddAsync(user);
         await _unitOfWork.SaveChangesAsync();
 
-        var userRole = await _unitOfWork.Roles.FirstOrDefaultAsync(r => r.Name == "User");
+        var userRole = await _unitOfWork.Roles.FirstOrDefaultAsync(r => r.Name == "Member");
         if (userRole != null)
         {
             await _unitOfWork.UserRoles.AddAsync(new UserRole
@@ -91,7 +90,9 @@ public class AuthService : IAuthService
             await _unitOfWork.SaveChangesAsync();
         }
 
-        var roles = new List<string> { "User" };
+        var roles = userRole != null
+            ? new List<string> { userRole.Name }
+            : new List<string>();
         var token = GenerateJwtToken(user.UserId, user.Email, roles);
 
         return new AuthResponseDto
